@@ -6,22 +6,39 @@
     <link rel="stylesheet" href="../client/css/main.css">
     <title>Gatitos</title>
 </head>
-<body>
-    <main>
-        <body class="gatitos">
+<body>        
 
-            <h1 class="titulo">Gatitos</h1>
+        <span id="error">Error: </span>
+        <h1 class="titulo">Cat world</h1>
+        <body class="catWotld">
 
-            <div class="cats">
-                    
-                <img id="img1" class="imagen" alt="gatito random">
-                <img id="img2" class="imagen" alt="gatito random">
-                <img id="img3" class="imagen" alt="gatito random">
-                <img id="img4" class="imagen" alt="gatito random">
+            <h2 class="titulo">random cats</h2>
 
+            <div class="randomCats">                    
+
+                <picture>
+                    <button class="addFavorites" onclick="saveCats()">add to Favorites</button>
+                    <img id="img1" class="imagen" alt="gatito random">
+                </picture>
+                <picture>
+                    <button class="addFavorites" onclick="saveCats()">add to Favorites</button>
+                    <img id="img2" class="imagen" alt="gatito random">
+                </picture>
+                <picture>
+                    <button class="addFavorites" onclick="saveCats()">add to Favorites</button>
+                    <img id="img3" class="imagen" alt="gatito random">
+                </picture>
+
+            </div>  
+
+            <h2 class="titulo">favorite cats</h2>
+
+            <div class="favoriteCats">
+                <button class="removeFavorites">Unfavorite</button>
+                <img id="img4" class="imagen" alt="gatito random">                
             </div>
             
-            <button class="button"  onclick="reload()">Reset</button>
+            <button class="reload"  onclick="loadCats()">Reset</button>
 
 <script src="../client/secrets.js"></script>
 <script src="../client/main.js"></script>
