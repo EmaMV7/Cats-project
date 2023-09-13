@@ -8,38 +8,35 @@
 </head>
 <body>        
 
-        <span id="error">Error: </span>
         <h1 class="titulo">Cat world</h1>
         <body class="catWotld">
 
             <h2 class="titulo">random cats</h2>
 
             <div class="randomCats">                    
-
-                <picture>
-                    <button class="addFavorites" onclick="saveCats()">add to Favorites</button>
+                
+                <picture class="box-image">
+                    <button class="addFavorites1">add to Favorites</button>
                     <img id="img1" class="imagen" alt="gatito random">
                 </picture>
-                <picture>
-                    <button class="addFavorites" onclick="saveCats()">add to Favorites</button>
+                <picture class="box-image">
+                    <button class="addFavorites2">add to Favorites</button>
                     <img id="img2" class="imagen" alt="gatito random">
                 </picture>
-                <picture>
-                    <button class="addFavorites" onclick="saveCats()">add to Favorites</button>
+                <picture class="box-image">
+                    <button class="addFavorites3">add to Favorites</button>
                     <img id="img3" class="imagen" alt="gatito random">
                 </picture>
-
             </div>  
-
-            <h2 class="titulo">favorite cats</h2>
-
-            <div class="favoriteCats">
-                <button class="removeFavorites">Unfavorite</button>
-                <img id="img4" class="imagen" alt="gatito random">                
+            <div class="aa">
+                <button class="reload" onclick="loadCats()">More cats</button>
             </div>
             
-            <button class="reload"  onclick="loadCats()">Reset</button>
+            <h2 class="titulo">favorite cats</h2>
 
+            <div class="favoriteCats"></div>
+            
+            <span id="error"></span>
 <script src="../client/secrets.js"></script>
 <script src="../client/main.js"></script>
 </body>

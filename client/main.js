@@ -1,5 +1,4 @@
 const resetButton = document.querySelector('.button');
-const favorites = document.createRange().createContextualFragment(``)
 
 const API_URL = [
     'https://api.thecatapi.com/v1/images/search',
@@ -13,6 +12,13 @@ const API_URL_FAVORITES = [
     'https://api.thecatapi.com/v1/favourites',
     '?',
     `${API_KEY}`,
+].join('');
+
+const API_URL_DELETE_FAVORITES = (id) => [
+    'https://api.thecatapi.com/v1/favourites/',
+    `${id}`,
+    '?',
+    `${API_KEY}` 
 ].join('');
 
 
@@ -32,9 +38,17 @@ async function loadCats(){
         const img2 = document.getElementById('img2');
         const img3 = document.getElementById('img3');
     
+        const buttonFC1 = document.querySelector('.addFavorites1');
+        const buttonFC2 = document.querySelector('.addFavorites2');
+        const buttonFC3 = document.querySelector('.addFavorites3');
+
         img1.src = data[0].url;
         img2.src = data[1].url;
         img3.src = data[2].url;
+            
+        buttonFC1.onclick = () => saveCat(data[0].id);
+        buttonFC2.onclick = () => saveCat(data[1].id);
+        buttonFC3.onclick = () => saveCat(data[2].id);
     }
         
 }
@@ -46,36 +60,75 @@ async function loadFavoriteCats(){
         }
     });
     const data = await res.json();
-    console.log('Favorites');
+    console.log('Load Favorites');
     console.log(data);
-    
-    const img4 = document.getElementById('img4')
-    img4.innerHTML = data[0].image.url;
 
+    posiCats = [];
 
     if(res.status !== 200){
-        spanError.innerHTML = "LF Hubo un error: " + res.status;
+        spanError.innerHTML = "LF Hubo un error: " + res.status + data;
+    }else{
+        const favoriteCats = document.querySelector('.favoriteCats');
+        favoriteCats.innerHTML = "";
+
+        data.forEach(cats => {            
+        const picture = document.createElement('picture');
+        const btn = document.createElement('button');
+        const img = document.createElement('img');
+        const btnText = document.createTextNode('Unfavorite');
+        
+        picture.classList.add('box-image')
+        picture.append(img, btn);
+        btn.classList.add('removeFavorites')
+        btn.appendChild(btnText);
+        btn.onclick = () => {deleteFavoriteCat(cats.id)};
+        img.src = cats.image.url;
+        img.classList.add('imagen');
+        favoriteCats.appendChild(picture);
+        });
     }
 }
 
-async function saveCats(){
+async function saveCat(id){
     const res = await fetch(API_URL_FAVORITES, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            image_id:'8jr'
+            image_id: id
         })
     })
 
-    console.log('save');
-    console.log(res);
+    if(res.status !== 200){
+        console.log('SV Hubo un error: ' + res);
+    }else{
+        console.log('save cat')
+        loadFavoriteCats();
+    }
 
+    
+
+}
+
+async function deleteFavoriteCat(id){
+    console.log('delete');
+    const res = await fetch(API_URL_DELETE_FAVORITES(id), {
+        method: 'DELETE'
+    })
+    const data = await res.json();
+
+    if(res.status !== 200){
+        spanError.innerHTML = "DF Hubo un error: " + res.status + data; 
+    }else{
+        console.log('Removed cat from favorites');        
+        loadFavoriteCats();
+    }
 
 
 }
 
 loadCats();
 loadFavoriteCats();
+
 //https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t

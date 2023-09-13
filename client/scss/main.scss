@@ -11,7 +11,7 @@
     text-align: center;
     flex-direction: column;
     justify-content: center;
-    align-content:center;
+    align-self: center;
 
 
     .titulo{
@@ -20,27 +20,36 @@
 
 
     .randomCats{
-        display: flex;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
 
-        picture{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-
-            .imagen {
-                width: 350px;
-                height: 400px;
-                border-radius: 4px;
-                border: 2px solid black;
-                margin: auto;
+            .addFavorites1{
+                width: 100%;
+                padding: 4px 15px;
+                margin: 0.5em;
+                background-color: rgb(241, 189, 189);
             }
+            .addFavorites2{
+                @extend .addFavorites1
+            }
+            .addFavorites3{                
+                @extend .addFavorites1
+            }    
         }
-
     }
 
+    .aa{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .reload {
+        background-color: white;
+        margin-top: 10px;
+        padding: 4px 10px;        
+    }
 
     button{
         text-align: center;
@@ -50,35 +59,43 @@
         cursor: pointer;
 
     }
-    .reload {
-        background-color: white;
-        display: fixed;
-        margin: auto;
-        margin-top: 10px;
-        padding: 4px 10px;
-
-    }
-    .addFavorites{
-        width: 100%;
-        padding: 4px 15px;
-        margin: 0.5em;
-        background-color: rgb(241, 189, 189);
-    }
+    
 
     .favoriteCats{
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
         justify-content: center;
         align-items: center;
 
         .removeFavorites{
             background-color: rgb(174, 174, 243);
             padding: 4px 15px;
-            margin: 5px
+            margin: 5px;
+            width: 100%;
         }
-    }
+
+       
+    
 
 }
+
+.box-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.imagen {
+    width: 350px;
+    height: 400px;
+    border-radius: 4px;
+    border: 2px solid black;
+    margin: auto;
+}
+
 
 .catWotld > * {
     margin: 10px;
