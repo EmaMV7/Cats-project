@@ -1,18 +1,13 @@
 const resetButton = document.querySelector('.button');
 
 const API_URL = [
-    'https://api.thecatapi.com/v1/images/search',
-    '?',
-    `${API_KEY}`,
-    '&',
+    'https://api.thecatapi.com/v1/images/search?',
     'limit=3',
 ].join('');
 
-const API_URL_FAVORITES = [
-    'https://api.thecatapi.com/v1/favourites',
-    '?',
-    `${API_KEY}`,
-].join('');
+const API_URL_FAVORITES = ['https://api.thecatapi.com/v1/favourites?',
+`${API_KEY}`].join('');
+
 
 const API_URL_DELETE_FAVORITES = (id) => [
     'https://api.thecatapi.com/v1/favourites/',
@@ -21,11 +16,18 @@ const API_URL_DELETE_FAVORITES = (id) => [
     `${API_KEY}` 
 ].join('');
 
+const API_URL_UPLOAD = "https://api.thecatapi.com/v1/images/upload";
+
 
 const spanError = document.getElementById("error")
 
 async function loadCats(){
-    const res = await fetch(API_URL);
+    const res = await fetch(API_URL,{
+        method: 'GET',
+        headers: {
+            'X-API-KEY': API_KEY2,
+        }
+    });
     const data = await res.json();
     console.log('Random');
     console.log(data);
@@ -54,9 +56,10 @@ async function loadCats(){
 }
 
 async function loadFavoriteCats(){
-    const res = await fetch(API_URL_FAVORITES + '&sub_id',{
+    const res = await fetch(API_URL_FAVORITES,{
+        method: 'GET',
         hearders:{
-            "content-type":"application/json"
+            "content-type" : "application/json"
         }
     });
     const data = await res.json();
@@ -93,7 +96,7 @@ async function saveCat(id){
     const res = await fetch(API_URL_FAVORITES, {
         method: 'POST',
         headers:{
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             image_id: id
@@ -106,9 +109,6 @@ async function saveCat(id){
         console.log('save cat')
         loadFavoriteCats();
     }
-
-    
-
 }
 
 async function deleteFavoriteCat(id){
@@ -124,8 +124,29 @@ async function deleteFavoriteCat(id){
         console.log('Removed cat from favorites');        
         loadFavoriteCats();
     }
+}
 
+async function uploadCatPhoto(){
+    const form = document.getElementById('uploadingForm');
+    const formData = new FormData(form);
 
+    const res = await fetch(API_URL_UPLOAD,{
+        method: 'POST',
+        headers:{
+            'X-API-KEY': API_KEY2,
+        },
+        body: formData,
+    })
+
+    const data = await res.json();
+
+    if(res.status !== 200){
+        spanError.innerHTML = "Hubo un error: " + res.status + data.message;
+    }else{
+        console.log('Foto de gato subida');
+    }
+    
+    saveCat(data.id)
 }
 
 loadCats();

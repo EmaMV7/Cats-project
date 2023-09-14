@@ -37,9 +37,8 @@
                 @extend .addFavorites1
             }    
         }
-    }
 
-    .aa{
+    #reload{
         width: 100%;
         display: flex;
         justify-content: center;
@@ -57,7 +56,6 @@
         border: 2px solid black;
         border-radius: 5px;
         cursor: pointer;
-
     }
     
 
@@ -74,11 +72,25 @@
             margin: 5px;
             width: 100%;
         }
+    }
 
-       
-    
+    #uploadingForm{
+        padding: 20px;
+        gap:15px;
+
+        button{
+            margin-left:10px;
+            background-color: white;
+            padding: 5px;
+            transition: all 0.1s ease-in-out;
+        }
+        button:hover{
+            background-color: rgb(244, 248, 185);
+        }
+    }
 
 }
+
 
 .box-image{
     display: flex;
@@ -100,6 +112,5 @@
 .catWotld > * {
     margin: 10px;
 }
-
 
 

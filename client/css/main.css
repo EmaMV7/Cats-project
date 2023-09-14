@@ -27,39 +27,49 @@
   margin: 0.5em;
   background-color: rgb(241, 189, 189);
 }
-.aa {
+.catWotld #reload {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.reload {
+.catWotld .reload {
   background-color: white;
   margin-top: 10px;
   padding: 4px 10px;
 }
-
-button {
+.catWotld button {
   text-align: center;
   width: 100px;
   border: 2px solid black;
   border-radius: 5px;
   cursor: pointer;
 }
-
-.favoriteCats {
+.catWotld .favoriteCats {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
   justify-content: center;
   align-items: center;
 }
-.favoriteCats .removeFavorites {
+.catWotld .favoriteCats .removeFavorites {
   background-color: rgb(174, 174, 243);
   padding: 4px 15px;
   margin: 5px;
   width: 100%;
+}
+.catWotld #uploadingForm {
+  padding: 20px;
+  gap: 15px;
+}
+.catWotld #uploadingForm button {
+  margin-left: 10px;
+  background-color: white;
+  padding: 5px;
+  transition: all 0.1s ease-in-out;
+}
+.catWotld #uploadingForm button:hover {
+  background-color: rgb(244, 248, 185);
 }
 
 .box-image {
